@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function SwipeableImage({ user }) {
   return (
@@ -14,13 +15,19 @@ export default function SwipeableImage({ user }) {
             {user.dob.age}
           </Text>
         </View>
+        <View style={styles.textRow}>
+          <FontAwesome name="map-marker" size={20} color="white" />
+          <Text style={[styles.textSecondary, styles.textShadow]}>
+            {user.location.city}
+          </Text>
+        </View>
       </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
   photo: {
-    height: "400px",
+    height: "700px",
     resizeMode: "cover",
     borderRadius: 20,
   },

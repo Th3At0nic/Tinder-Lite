@@ -4,6 +4,8 @@ import { Alert, StyleSheet, Text, View } from "react-native";
 import Topbar from "./Components/Topbar";
 import SwipeableImage from "./Components/SwipeableImage";
 import axios from "axios";
+import BottomBar from "./Components/BottomBar";
+import Swipes from "./Components/Swipes";
 
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -27,13 +29,29 @@ export default function App() {
     fetchUsers();
   }, []);
 
+  function handleLike() {
+    console.log("like");
+    nextUser();
+  }
+  function nextUser() {
+    const nextIndex = users.length - 2 === currentIndex ? 0 : currentIndex + 1;
+    setCurrentIndex(nextIndex);
+  }
+
   return (
     <View style={styles.container}>
       <Topbar />
       <View style={styles.swipes}>
-        {users.length > 1 && <SwipeableImage user={users[currentIndex]} />}
+        {users.length > 1 && (
+          <Swipes
+            currentIndex={currentIndex}
+            users={users}
+            handleLike={handleLike}
+          ></Swipes>
+        )}
         {users.length}
       </View>
+      <BottomBar />
     </View>
   );
 }
