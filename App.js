@@ -33,6 +33,10 @@ export default function App() {
     console.log("like");
     nextUser();
   }
+  function handlePass() {
+    console.log("Pass");
+    nextUser();
+  }
   function nextUser() {
     const nextIndex = users.length - 2 === currentIndex ? 0 : currentIndex + 1;
     setCurrentIndex(nextIndex);
@@ -42,14 +46,18 @@ export default function App() {
     <View style={styles.container}>
       <Topbar />
       <View style={styles.swipes}>
-        {users.length > 1 && (
-          <Swipes
-            currentIndex={currentIndex}
-            users={users}
-            handleLike={handleLike}
-          ></Swipes>
-        )}
-        {users.length}
+        {users.length > 1 &&
+          users.map(
+            (u, i) =>
+              currentIndex === i && (
+                <Swipes
+                  currentIndex={currentIndex}
+                  users={users}
+                  handleLike={handleLike}
+                  handlePass={handlePass}
+                ></Swipes>
+              )
+          )}
       </View>
       <BottomBar />
     </View>
