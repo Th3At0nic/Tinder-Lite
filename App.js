@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Constants from "expo-constants";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import Topbar from "./Components/Topbar";
+import SwipeableImage from "./Components/SwipeableImage";
 import axios from "axios";
 
 export default function App() {
   const [users, setUsers] = useState([]);
-  
+  const [currentIndex, setCurrentIndex] = useState(0);
   async function fetchUsers() {
     try {
       const { data } = await axios.get(
-        "https://randomsuer.me/api/?gender=female&results=50"
+        "https://randomuser.me/api/?gender=female&results=50"
       );
       setUsers(data.results);
+      console.log(data.results);
     } catch (error) {
       console.log(error);
       Alert.alert("Error getting users", " ", [
@@ -28,7 +30,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Topbar />
-      <View style={styles.swipes}></View>
+      <View style={styles.swipes}>
+        {users.length > 1 && <SwipeableImage user={users[currentIndex]} />}
+        {users.length}
+      </View>
     </View>
   );
 }
