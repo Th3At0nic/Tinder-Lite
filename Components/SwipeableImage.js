@@ -39,12 +39,12 @@ export default function SwipeableImage({ user, willLike, willPass }) {
 const boxStyle = {
   position: "absolute",
   top: "50%",
-  paddingTop: "10",
-  paddingBottom: "10",
-  paddingRight: "20",
-  paddingLeft: "20",
-  borderWidth: "3",
-  borderRadius: "10",
+  paddingTop: 10,
+  paddingBottom: 10,
+  paddingRight: 20,
+  paddingLeft: 20,
+  borderWidth: 3,
+  borderRadius: 10,
 };
 const styles = StyleSheet.create({
   likeBox: {

@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Constants from "expo-constants";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import Topbar from "./Components/Topbar";
-import SwipeableImage from "./Components/SwipeableImage";
 import axios from "axios";
 import BottomBar from "./Components/BottomBar";
 import Swipes from "./Components/Swipes";
