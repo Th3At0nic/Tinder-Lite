@@ -5,6 +5,16 @@ export default function SwipeableImage({ user }) {
   return (
     <View>
       <Image source={{ uri: user.picture.large }} style={styles.photo} />
+      <View style={styles.textContainer}>
+        <View style={styles.textRow}>
+          <Text style={[styles.textPrimary, styles.textShadow]}>
+            {user.name.first}
+          </Text>
+          <Text style={[styles.textSecondary, styles.textShadow]}>
+            {user.dob.age}
+          </Text>
+        </View>
+      </View>
     </View>
   );
 }
@@ -13,5 +23,29 @@ const styles = StyleSheet.create({
     height: "400px",
     resizeMode: "cover",
     borderRadius: 20,
+  },
+  textContainer: {
+    position: "absolute",
+    bottom: 20,
+    left: 20,
+  },
+  textRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  textPrimary: {
+    color: "white",
+    fontSize: 35,
+    fontWeight: "bold",
+  },
+  textSecondary: {
+    color: "white",
+    marginLeft: 10,
+    fontSize: 25,
+  },
+  textShadow: {
+    textShadowColor: "rgba(0, 0, 0, 0.80)",
+    textShadowOffset: { widht: -1, height: 1 },
+    textShadowRadius: 10,
   },
 });
