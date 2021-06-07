@@ -43,7 +43,11 @@ export default function Swipes({
       onSwipeableLeftWillOpen={() => setWillLike(true)}
       onSwipeableRightWillOpen={() => setWillPass(true)}
     >
-      <SwipeableImage user={users[currentIndex]} />
+      <SwipeableImage
+        user={users[currentIndex]}
+        willLike={willLike}
+        willPass={willPass}
+      />
     </Swipeable>
   );
 }
