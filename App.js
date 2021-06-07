@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Constants from "expo-constants";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import Topbar from "./Components/Topbar";
@@ -10,6 +10,7 @@ import Swipes from "./Components/Swipes";
 export default function App() {
   const [users, setUsers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const swipesRef = useRef(null);
   async function fetchUsers() {
     try {
       const { data } = await axios.get(
@@ -41,6 +42,12 @@ export default function App() {
     const nextIndex = users.length - 2 === currentIndex ? 0 : currentIndex + 1;
     setCurrentIndex(nextIndex);
   }
+  function handleLikePress() {
+    swipesRef.current.openLeft();
+  }
+  function handlePassPress() {
+    swipesRef.current.openRight();
+  }
 
   return (
     <View style={styles.container}>
@@ -51,6 +58,8 @@ export default function App() {
             (u, i) =>
               currentIndex === i && (
                 <Swipes
+                  ref={swipesRef}
+                  keys={i}
                   currentIndex={currentIndex}
                   users={users}
                   handleLike={handleLike}
@@ -59,7 +68,10 @@ export default function App() {
               )
           )}
       </View>
-      <BottomBar />
+      <BottomBar
+        handleLikePress={handleLikePress}
+        handlePassPress={handlePassPress}
+      />
     </View>
   );
 }
